@@ -16,10 +16,12 @@ public class ProductService {
     private ProductRepository productRepository;
 
     public ProductModel create (ProductInput productInput) {
-        return this.productRepository.save(new ProductModel(productInput.name(), productInput.price(), productInput.categoryId()));
+        return this.productRepository.save(
+                new ProductModel(productInput.name(), productInput.price(), productInput.categoryId()));
     }
 
     public Optional<ProductModel> getById (UUID id) {
+        if (id == null) return Optional.empty();
         return this.productRepository.findById(id);
     }
 

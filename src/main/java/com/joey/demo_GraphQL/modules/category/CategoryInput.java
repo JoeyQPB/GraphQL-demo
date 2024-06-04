@@ -1,4 +1,6 @@
 package com.joey.demo_GraphQL.modules.category;
 
-public record CategoryInput (String name) {
+import jakarta.validation.constraints.NotBlank;
+
+public record CategoryInput (@NotBlank String name) {
 }

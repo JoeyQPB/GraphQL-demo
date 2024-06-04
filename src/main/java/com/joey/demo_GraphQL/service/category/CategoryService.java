@@ -20,6 +20,7 @@ public class CategoryService {
     }
 
     public Optional<CategoryModel> getById (UUID id) {
+        if (id == null) return Optional.empty();
         return this.categoryRepository.findById(id);
     }
 

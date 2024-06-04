@@ -3,6 +3,7 @@ package com.joey.demo_GraphQL.controllers.product;
 import com.joey.demo_GraphQL.modules.product.ProductInput;
 import com.joey.demo_GraphQL.modules.product.ProductModel;
 import com.joey.demo_GraphQL.service.product.ProductService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -19,12 +20,12 @@ public class ProductController {
     private ProductService productService;
 
     @MutationMapping()
-    public ProductModel addProduct (@Argument ProductInput productInput) {
+    public ProductModel addProduct (@Argument @Valid ProductInput productInput) {
         return this.productService.create(productInput);
     }
 
     @QueryMapping(name = "productById")
-    public Optional<ProductModel> productById (@Argument UUID id) {
+    public Optional<ProductModel> productById (@Argument @Valid UUID id) {
         return this.productService.getById(id);
     }
 
